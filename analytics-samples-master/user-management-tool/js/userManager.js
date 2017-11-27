@@ -65,16 +65,9 @@ var userManagementApi = (function($, MarketingCloud) {
 
 		showSpinner();
 
-		getUsers().done(function(data) {
-			userLogins = data;
-			getFullLogins(userLogins);
-		}).fail(function(data) {
-			$(document).trigger("add-alerts", {
-				message : "Can't download users. The error was: " + data.responseJSON.error,
-				priority : "error"
-			});
-			hideSpinner();
-		});
+analyticsClient.makeRequest("Permissions.GetLogins", {"login_search_field" : "login", "login_search_value" : ""})
+		
+		
 	}
 
 	function getUsers() {
